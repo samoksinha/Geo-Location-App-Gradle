@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d | %-5.5p | (%F:%M:%L) | %X{MDC_CONTEXT_KEY_OPERATION_NAME}%X{MDC_CONTEXT_KEY} | %m %n" />
+		</layout>
+	</appender>
+	<appender name="geoLocationApp" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="C:/Users/Esisamo/Desktop/GeoLocationApp/geo-location-app.log" />
+		<param name="maxBackupIndex" value="100" />
+		<param name="maxFileSize" value="10MB" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d | %-5.5p | (%F:%M:%L) | %X{MDC_CONTEXT_KEY_OPERATION_NAME}%X{MDC_CONTEXT_KEY} | %m %n" />
+		</layout>
+	</appender>
+	
+	<logger name="com.sam.geolocationapp" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="geoLocationApp" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	<root>
+	   <level value="INFO"/>
+	   <appender-ref ref="geoLocationApp" />
+	   <appender-ref ref="consoleAppender" />
+	</root>
+
+</log4j:configuration>

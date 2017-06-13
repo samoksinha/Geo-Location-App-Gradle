@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sam.geolocationapp.unitTest.GeoLocationAddShopTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-06-13T07:12:16" hostname="PF0CCQY0" time="5.071">
+  <properties/>
+  <testcase name="addShop" classname="com.sam.geolocationapp.unitTest.GeoLocationAddShopTest" time="5.071"/>
+  <system-out><![CDATA[12:42:06.349 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.379 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+12:42:06.390 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+12:42:06.420 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+12:42:06.435 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest], using SpringBootContextLoader
+12:42:06.439 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]: class path resource [com/sam/geolocationapp/unitTest/GeoLocationAddShopTest-context.xml] does not exist
+12:42:06.439 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]: class path resource [com/sam/geolocationapp/unitTest/GeoLocationAddShopTestContext.groovy] does not exist
+12:42:06.440 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+12:42:06.505 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.527 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]: using defaults.
+12:42:06.532 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+12:42:06.559 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@35bf6a8e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@786f77a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3e4ac7c6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1ab4376, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4f8ea2d7, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7f03b17b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@179f2daa, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4cf46cdc, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7656f78f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@143c0857, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7a208507, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@15dd8413]
+12:42:06.562 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.563 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.566 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.566 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.572 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@142ef24 testClass = GeoLocationAddShopTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@29e5bb6e testClass = GeoLocationAddShopTest, locations = '{}', classes = '{class com.sam.geolocationapp.boot.GeoLocationAppInitializer, class com.sam.geolocationapp.boot.GeoLocationAppInitializer}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{classpath:application.properties}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[[ImportsContextCustomizer@606440ea key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, Package Import com.sam.geolocationapp.unitTest]], org.springframework.boot.test.context.SpringBootTestContextCustomizer@7af6e604, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@31e2416c, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@e7e8512, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1087da3], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+12:42:06.574 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.574 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.sam.geolocationapp.unitTest.GeoLocationAddShopTest]
+12:42:06.783 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@142ef24 testClass = GeoLocationAddShopTest, testInstance = com.sam.geolocationapp.unitTest.GeoLocationAddShopTest@12438101, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@29e5bb6e testClass = GeoLocationAddShopTest, locations = '{}', classes = '{class com.sam.geolocationapp.boot.GeoLocationAppInitializer, class com.sam.geolocationapp.boot.GeoLocationAppInitializer}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{classpath:application.properties}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[[ImportsContextCustomizer@606440ea key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, Package Import com.sam.geolocationapp.unitTest]], org.springframework.boot.test.context.SpringBootTestContextCustomizer@7af6e604, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@31e2416c, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@e7e8512, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1087da3], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]].
+12:42:07.063 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+12:42:07.064 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+12:42:07.064 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+12:42:07.068 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [class path resource [application.properties]] PropertySource with highest search precedence
+12:42:07.069 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}
+12:42:07.070 [Test worker] DEBUG org.springframework.core.env.StandardEnvironment - Adding [Inlined Test Properties] PropertySource with highest search precedence
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2017-06-13 12:42:07.767  INFO 8548 --- [    Test worker] c.s.g.unitTest.GeoLocationAddShopTest    : Starting GeoLocationAddShopTest on PF0CCQY0 with PID 8548 (started by esisamo in C:\Sam\STS-3.8.2\workspace-sts-3.8.2.RELEASE\geo-location-app-gradle)
+2017-06-13 12:42:07.769  INFO 8548 --- [    Test worker] c.s.g.unitTest.GeoLocationAddShopTest    : No active profile set, falling back to default profiles: default
+2017-06-13 12:42:07.804  INFO 8548 --- [    Test worker] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1bd4e5f1: startup date [Tue Jun 13 12:42:07 IST 2017]; root of context hierarchy
+2017-06-13 12:42:10.955  INFO 8548 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e04da6ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-06-13 12:42:11.712  INFO 8548 --- [    Test worker] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 0 (http)
+2017-06-13 12:42:11.725  INFO 8548 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-06-13 12:42:11.727  INFO 8548 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-06-13 12:42:12.003  INFO 8548 --- [ost-startStop-1] o.a.c.c.C.[.[.[/gelolocationapp]         : Initializing Spring embedded WebApplicationContext
+2017-06-13 12:42:12.005  INFO 8548 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4206 ms
+2017-06-13 12:42:12.344  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-06-13 12:42:12.346  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'webServlet' to [/h2/*]
+2017-06-13 12:42:12.351  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-06-13 12:42:12.352  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-06-13 12:42:12.352  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-06-13 12:42:12.352  INFO 8548 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-06-13 12:42:12.438  INFO 8548 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2017-06-13 12:42:12.881  INFO 8548 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-06-13 12:42:12.931  INFO 8548 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-06-13 12:42:13.083  INFO 8548 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2017-06-13 12:42:13.085  INFO 8548 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-06-13 12:42:13.087  INFO 8548 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-06-13 12:42:13.134  INFO 8548 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-06-13 12:42:13.412  INFO 8548 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2017-06-13 12:42:14.287  INFO 8548 --- [    Test worker] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+Hibernate: 
+    drop table shop_details if exists
+Hibernate: 
+    drop table transanction_log if exists
+Hibernate: 
+    drop sequence if exists hibernate_sequence
+Hibernate: 
+    create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: 
+    create table shop_details (
+        shop_id bigint not null,
+        shop_address varchar(500),
+        shop_latitude varchar(40),
+        shop_longitude varchar(40),
+        shop_name varchar(500),
+        shop_pincode bigint,
+        primary key (shop_id)
+    )
+Hibernate: 
+    create table transanction_log (
+        unique_log_id varchar(50) not null,
+        api_key varchar(500),
+        client_ip varchar(20),
+        email_id varchar(50),
+        operation_name varchar(50),
+        request_body varchar(2000),
+        request_time varchar(20),
+        request_type varchar(10),
+        response_body varchar(2000),
+        response_time varchar(20),
+        token_type varchar(10),
+        primary key (unique_log_id)
+    )
+2017-06-13 12:42:14.309  INFO 8548 --- [    Test worker] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2017-06-13 12:42:14.355  INFO 8548 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-06-13 12:42:14.926  INFO 8548 --- [    Test worker] o.a.c.c.C.[.[.[/gelolocationapp]         : Initializing Spring FrameworkServlet ''
+2017-06-13 12:42:14.926  INFO 8548 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization started
+2017-06-13 12:42:15.168  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/map/addshop/v1],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.sam.geolocationapp.models.GeoLocationAppResponse> com.sam.geolocationapp.rest.controllers.GeoLocationAppController.addShop(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.util.Map<java.lang.String, java.lang.String>,com.sam.geolocationapp.models.GeoLocationAppRequest)
+2017-06-13 12:42:15.170  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/map/getapikey/v1],methods=[GET],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.sam.geolocationapp.models.GeoLocationAppResponse> com.sam.geolocationapp.rest.controllers.GeoLocationAppController.getApiKey(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.util.Map<java.lang.String, java.lang.String>)
+2017-06-13 12:42:15.170  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/map/findnearestshops/v1],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.sam.geolocationapp.models.GeoLocationAppResponse> com.sam.geolocationapp.rest.controllers.GeoLocationAppController.findNearestShops(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.util.Map<java.lang.String, java.lang.String>,com.sam.geolocationapp.models.GeoLocationAppRequest)
+2017-06-13 12:42:15.174  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-06-13 12:42:15.174  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-06-13 12:42:15.226  INFO 8548 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-13 12:42:15.226  INFO 8548 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-13 12:42:15.257  INFO 8548 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-06-13 12:42:15.453  INFO 8548 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1bd4e5f1: startup date [Tue Jun 13 12:42:07 IST 2017]; root of context hierarchy
+2017-06-13 12:42:15.600  INFO 8548 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : FrameworkServlet '': initialization completed in 674 ms
+2017-06-13 12:42:16,046 | INFO  | (GeoLocationAppErrorConfigurator.java:onApplicationEvent:28) |  | Entering ErrorsPropertyConfigurerStartUp:onApplicationEvent : with : contextStratFlag : false 
+2017-06-13 12:42:16,051 | DEBUG | (GeoLocationAppErrorConfigurator.java:onApplicationEvent:31) |  | Error Config File Name : /geo-location-errorcodes.properties 
+2017-06-13 12:42:16,052 | INFO  | (GeoLocationAppErrorConfigurator.java:loadAndReturnPropertiesToMap:42) |  | Entering ErrorsPropertyConfigurerStartUp:loadAndReturnPropertiesToMap 
+2017-06-13 12:42:16,054 | INFO  | (GeoLocationAppErrorConfigurator.java:loadAndReturnPropertiesToMap:59) |  | Leaving ErrorsPropertyConfigurerStartUp:loadAndReturnPropertiesToMap 
+2017-06-13 12:42:16,059 | INFO  | (GeoLocationAppErrorConfigurator.java:onApplicationEvent:38) |  | Leaving ErrorsPropertyConfigurerStartUp:onApplicationEvent : contextStratFlag : true 
+2017-06-13 12:42:16.132  INFO 8548 --- [    Test worker] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 54445 (http)
+2017-06-13 12:42:16.138  INFO 8548 --- [    Test worker] c.s.g.unitTest.GeoLocationAddShopTest    : Started GeoLocationAddShopTest in 9.065 seconds (JVM running for 12.847)
+2017-06-13 12:42:16.711  INFO 8548 --- [o-auto-1-exec-1] o.a.c.c.C.[.[.[/gelolocationapp]         : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-06-13 12:42:16.711  INFO 8548 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-06-13 12:42:16.714  INFO 8548 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 3 ms
+2017-06-13 12:42:16,874 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:49) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Starts Executing 
+2017-06-13 12:42:16,875 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:65) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Insert :transactionLog : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:16,895 | INFO  | (GeoLocationAppDataAccessService.java:create:34) |  | In GeoLocationAppDataAccessService:create : Before calling Database Operation : startTime : 1497337936895 
+2017-06-13 12:42:16,896 | INFO  | (GeoLocationAppDataAccessService.java:create:35) |  | In GeoLocationAppDataAccessService:create : entity : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+Hibernate: 
+    /* insert com.sam.geolocationapp.entities.TransactionLog
+        */ insert 
+        into
+            transanction_log
+            (api_key, client_ip, email_id, operation_name, request_body, request_time, request_type, response_body, response_time, token_type, unique_log_id) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-06-13 12:42:16,958 | INFO  | (GeoLocationAppDataAccessService.java:create:41) |  | In GeoLocationAppDataAccessService:create : After calling Database Operation : endTime : 1497337936958 : Total time taken : 63 
+2017-06-13 12:42:16,959 | INFO  | (GeoLocationAppDataAccessService.java:create:42) |  | In GeoLocationAppDataAccessService:create : Created Enitty into database : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:16,961 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:72) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Completes Execution : true 
+2017-06-13 12:42:16,971 | INFO  | (GeoLocationAppController.java:getApiKey:54) |  | In GeoLocationAppController:loginWithHeader : Starts Executing 
+2017-06-13 12:42:16,972 | INFO  | (GeoLocationAppController.java:getApiKey:68) |  | In GeoLocationAppController:loginWithHeader : httpHeadersMap{accept=application/json, application/json, application/*+json, application/*+json, content-type=application/json, emailid=samok.sinha@gmail.com, user-agent=Java/1.8.0_121, host=localhost:54445, connection=keep-alive} 
+2017-06-13 12:42:16,973 | INFO  | (GeoLocationAppTokenUtil.java:createAccessToken:43) |  | In GeoLocationAppTokenUtil:createAccessToken : Starts Executing : with : emailId : samok.sinha@gmail.com 
+2017-06-13 12:42:17,781 | INFO  | (GeoLocationAppTokenUtil.java:createAccessToken:64) |  | In GeoLocationAppTokenUtil:createAccessToken : Completes Execution 
+2017-06-13 12:42:17,784 | INFO  | (GeoLocationAppController.java:getApiKey:105) |  | In GeoLocationAppController:loginWithHeader : Completes Execution : Toatl Time Taken : 812 
+2017-06-13 12:42:17,797 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:81) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Starts Executing 
+2017-06-13 12:42:17,798 | INFO  | (GeoLocationAppDataAccessService.java:find:47) |  | In GeoLocationAppDataAccessService:find : Before calling Database Operation : startTime : 1497337937798 
+2017-06-13 12:42:17,798 | INFO  | (GeoLocationAppDataAccessService.java:find:48) |  | In GeoLocationAppDataAccessService:find : id : 3f45dba3-ae88-48fb-ab45-5ecb7202470a 
+2017-06-13 12:42:17,801 | INFO  | (GeoLocationAppDataAccessService.java:find:53) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337937801 : Total time taken : 3 
+2017-06-13 12:42:17,803 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:90) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Update :transactionLog : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=2017-06-13 12:42:17, responseBody={"status":"Success","response":{"emailid":"samok.sinha@gmail.com","apikey":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:17,804 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337937804 
+2017-06-13 12:42:17,804 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=2017-06-13 12:42:17, responseBody={"status":"Success","response":{"emailid":"samok.sinha@gmail.com","apikey":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:17,808 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337937808 : Total time taken : 4 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.TransactionLog */ update
+            transanction_log 
+        set
+            api_key=?,
+            client_ip=?,
+            email_id=?,
+            operation_name=?,
+            request_body=?,
+            request_time=?,
+            request_type=?,
+            response_body=?,
+            response_time=?,
+            token_type=? 
+        where
+            unique_log_id=?
+2017-06-13 12:42:17,820 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:92) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : After Update :transactionLog : TransactionLog [uniqueLogId=3f45dba3-ae88-48fb-ab45-5ecb7202470a, emailId=samok.sinha@gmail.com, apiKey=, tokenType=, requestType=get, operationName=getApiKey, requestTime=2017-06-13 12:42:16, requestBody=, responseTime=2017-06-13 12:42:17, responseBody={"status":"Success","response":{"emailid":"samok.sinha@gmail.com","apikey":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:17,821 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:99) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Completes Execution : updateToDbFlag : true 
+2017-06-13 12:42:17,853 | INFO  | (GeoLocationAddShopTest.java:addShop:70) |  | In GeoLocationControllerTest:addShop : geoLocationAppResponseString : {"status":"Success","response":{"emailid":"samok.sinha@gmail.com","apikey":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4"}} 
+2017-06-13 12:42:17,854 | INFO  | (GeoLocationAddShopTest.java:addShop:71) |  | In GeoLocationControllerTest:addShop : Status : 200 
+2017-06-13 12:42:17,900 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:49) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Starts Executing 
+2017-06-13 12:42:17,901 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:65) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Insert :transactionLog : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:17,906 | INFO  | (GeoLocationAppDataAccessService.java:create:34) |  | In GeoLocationAppDataAccessService:create : Before calling Database Operation : startTime : 1497337937906 
+2017-06-13 12:42:17,906 | INFO  | (GeoLocationAppDataAccessService.java:create:35) |  | In GeoLocationAppDataAccessService:create : entity : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+Hibernate: 
+    /* insert com.sam.geolocationapp.entities.TransactionLog
+        */ insert 
+        into
+            transanction_log
+            (api_key, client_ip, email_id, operation_name, request_body, request_time, request_type, response_body, response_time, token_type, unique_log_id) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-06-13 12:42:17,910 | INFO  | (GeoLocationAppDataAccessService.java:create:41) |  | In GeoLocationAppDataAccessService:create : After calling Database Operation : endTime : 1497337937910 : Total time taken : 4 
+2017-06-13 12:42:17,911 | INFO  | (GeoLocationAppDataAccessService.java:create:42) |  | In GeoLocationAppDataAccessService:create : Created Enitty into database : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:17,914 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:72) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Completes Execution : true 
+2017-06-13 12:42:17,915 | INFO  | (GeoLocationAppController.java:addShop:118) |  | In GeoLocationAppController:createAddress : Starts Executing 
+2017-06-13 12:42:17,915 | INFO  | (GeoLocationAppController.java:addShop:129) |  | In GeoLocationAppController:createAddress : httpHeadersMap{accept=application/json, application/json, application/*+json, application/*+json, content-type=application/json, authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, user-agent=Java/1.8.0_121, host=localhost:54445, connection=keep-alive, content-length=78} 
+2017-06-13 12:42:17,916 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:addShop:107) |  | In GeoLocationAppTransanctionLogServiceImpl:addShop : Starts Executing 
+2017-06-13 12:42:17,916 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:findShop:171) |  | In GeoLocationAppTransanctionLogServiceImpl:findShop : Starts Executing 
+2017-06-13 12:42:17,917 | INFO  | (GeoLocationAppDataAccessService.java:findShopByName:83) |  | In GeoLocationAppDataAccessService:findShopByName : Before calling Database Operation : startTime : 1497337937917 
+Hibernate: 
+    /* dynamic native SQL query */ select
+        * 
+    from
+        shop_details 
+    where
+        shop_name = ?
+2017-06-13 12:42:17,961 | INFO  | (GeoLocationAppDataAccessService.java:findShopByName:93) |  | In GeoLocationAppDataAccessService:findShopByName : After calling Database Operation : endTime : 1497337937961 : Total time taken : 44 
+2017-06-13 12:42:17,962 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:findShop:184) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : shopDetails : null 
+2017-06-13 12:42:17,963 | INFO  | (GeoLocationAppDataAccessService.java:create:34) |  | In GeoLocationAppDataAccessService:create : Before calling Database Operation : startTime : 1497337937963 
+2017-06-13 12:42:17,964 | INFO  | (GeoLocationAppDataAccessService.java:create:35) |  | In GeoLocationAppDataAccessService:create : entity : ShopDetails [shopId=null, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=null, shopLongitude=null] 
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    /* insert com.sam.geolocationapp.entities.ShopDetails
+        */ insert 
+        into
+            shop_details
+            (shop_address, shop_latitude, shop_longitude, shop_name, shop_pincode, shop_id) 
+        values
+            (?, ?, ?, ?, ?, ?)
+2017-06-13 12:42:17,973 | INFO  | (GeoLocationAppDataAccessService.java:create:41) |  | In GeoLocationAppDataAccessService:create : After calling Database Operation : endTime : 1497337937973 : Total time taken : 10 
+2017-06-13 12:42:17,973 | INFO  | (GeoLocationAppDataAccessService.java:create:42) |  | In GeoLocationAppDataAccessService:create : Created Enitty into database : ShopDetails [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=null, shopLongitude=null] 
+2017-06-13 12:42:17,974 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:addShop:137) |  | In GeoLocationAppTransanctionLogServiceImpl:addShop : Completes Execution : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=null, shopLongitude=null, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:17,975 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:populateShopCoordinates:230) |  | In GeoLocationAppTransanctionLogServiceImpl:populateShopCoordinates : Starts Executing : with : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=null, shopLongitude=null, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:17,975 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:35) |  | In GeoLocationRestClient:callGeoLocationRestApi : Starts Executing : with : pinCode : 700078 
+2017-06-13 12:42:17,976 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:49) |  | In GeoLocationRestClient:callGeoLocationRestApi : populatedGeoLocationApiUrl : https://maps.googleapis.com/maps/api/geocode/json?address=700078 
+2017-06-13 12:42:20,906 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:81) |  | In GeoLocationRestClient:callGeoLocationRestApi : Completes Execution : Toatl Time Taken : 2810 
+2017-06-13 12:42:20,924 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:populateShopCoordinates:280) |  | In GeoLocationAppTransanctionLogServiceImpl:populateShopCoordinates : Completes Execution : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=22.5074344, shopLongitude=88.3872835, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:20,924 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:145) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Starts Executing 
+2017-06-13 12:42:20,925 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337940925 
+2017-06-13 12:42:20,925 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : ShopDetails [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=22.5074344, shopLongitude=88.3872835] 
+2017-06-13 12:42:20,926 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337940926 : Total time taken : 1 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.ShopDetails */ update
+            shop_details 
+        set
+            shop_address=?,
+            shop_latitude=?,
+            shop_longitude=?,
+            shop_name=?,
+            shop_pincode=? 
+        where
+            shop_id=?
+2017-06-13 12:42:20,927 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:163) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : updateShopFlag : true 
+2017-06-13 12:42:20,927 | INFO  | (GeoLocationAppController.java:addShop:177) |  | In GeoLocationAppController:createAddress : Completes Execution : Toatl Time Taken : 3012 
+2017-06-13 12:42:20,930 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:81) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Starts Executing 
+2017-06-13 12:42:20,930 | INFO  | (GeoLocationAppDataAccessService.java:find:47) |  | In GeoLocationAppDataAccessService:find : Before calling Database Operation : startTime : 1497337940930 
+2017-06-13 12:42:20,930 | INFO  | (GeoLocationAppDataAccessService.java:find:48) |  | In GeoLocationAppDataAccessService:find : id : 309c616f-d7d5-4a7b-98ae-279d8a91672c 
+2017-06-13 12:42:20,931 | INFO  | (GeoLocationAppDataAccessService.java:find:53) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337940931 : Total time taken : 1 
+2017-06-13 12:42:20,931 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:90) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Update :transactionLog : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=2017-06-13 12:42:20, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:20,932 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337940932 
+2017-06-13 12:42:20,932 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=2017-06-13 12:42:20, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:20,932 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337940932 : Total time taken : 0 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.TransactionLog */ update
+            transanction_log 
+        set
+            api_key=?,
+            client_ip=?,
+            email_id=?,
+            operation_name=?,
+            request_body=?,
+            request_time=?,
+            request_type=?,
+            response_body=?,
+            response_time=?,
+            token_type=? 
+        where
+            unique_log_id=?
+2017-06-13 12:42:20,934 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:92) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : After Update :transactionLog : TransactionLog [uniqueLogId=309c616f-d7d5-4a7b-98ae-279d8a91672c, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:17, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078}, responseTime=2017-06-13 12:42:20, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:20,934 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:99) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Completes Execution : updateToDbFlag : true 
+2017-06-13 12:42:20,956 | INFO  | (GeoLocationAddShopTest.java:addShop:90) |  | In GeoLocationControllerTest:addShop : geoLocationAppResponseString : {"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}} 
+2017-06-13 12:42:20,960 | INFO  | (GeoLocationAddShopTest.java:addShop:91) |  | In GeoLocationControllerTest:addShop : Status : 200 
+2017-06-13 12:42:20,981 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:49) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Starts Executing 
+2017-06-13 12:42:20,981 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:65) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Insert :transactionLog : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:20,982 | INFO  | (GeoLocationAppDataAccessService.java:create:34) |  | In GeoLocationAppDataAccessService:create : Before calling Database Operation : startTime : 1497337940982 
+2017-06-13 12:42:20,982 | INFO  | (GeoLocationAppDataAccessService.java:create:35) |  | In GeoLocationAppDataAccessService:create : entity : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+Hibernate: 
+    /* insert com.sam.geolocationapp.entities.TransactionLog
+        */ insert 
+        into
+            transanction_log
+            (api_key, client_ip, email_id, operation_name, request_body, request_time, request_type, response_body, response_time, token_type, unique_log_id) 
+        values
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-06-13 12:42:20,985 | INFO  | (GeoLocationAppDataAccessService.java:create:41) |  | In GeoLocationAppDataAccessService:create : After calling Database Operation : endTime : 1497337940985 : Total time taken : 3 
+2017-06-13 12:42:20,985 | INFO  | (GeoLocationAppDataAccessService.java:create:42) |  | In GeoLocationAppDataAccessService:create : Created Enitty into database : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=null, responseBody=null, clientIp=127.0.0.1] 
+2017-06-13 12:42:20,986 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:insertToDb:72) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Completes Execution : true 
+2017-06-13 12:42:20,986 | INFO  | (GeoLocationAppController.java:addShop:118) |  | In GeoLocationAppController:createAddress : Starts Executing 
+2017-06-13 12:42:20,987 | INFO  | (GeoLocationAppController.java:addShop:129) |  | In GeoLocationAppController:createAddress : httpHeadersMap{accept=application/json, application/json, application/*+json, application/*+json, content-type=application/json, authorization=Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, user-agent=Java/1.8.0_121, host=localhost:54445, connection=keep-alive, content-length=78} 
+2017-06-13 12:42:20,987 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:addShop:107) |  | In GeoLocationAppTransanctionLogServiceImpl:addShop : Starts Executing 
+2017-06-13 12:42:20,987 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:findShop:171) |  | In GeoLocationAppTransanctionLogServiceImpl:findShop : Starts Executing 
+2017-06-13 12:42:20,987 | INFO  | (GeoLocationAppDataAccessService.java:findShopByName:83) |  | In GeoLocationAppDataAccessService:findShopByName : Before calling Database Operation : startTime : 1497337940987 
+Hibernate: 
+    /* dynamic native SQL query */ select
+        * 
+    from
+        shop_details 
+    where
+        shop_name = ?
+2017-06-13 12:42:20,996 | INFO  | (GeoLocationAppDataAccessService.java:findShopByName:93) |  | In GeoLocationAppDataAccessService:findShopByName : After calling Database Operation : endTime : 1497337940996 : Total time taken : 9 
+2017-06-13 12:42:20,997 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:findShop:184) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : shopDetails : ShopDetails [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700078, shopLatitude=22.5074344, shopLongitude=88.3872835] 
+2017-06-13 12:42:20,998 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:145) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Starts Executing 
+2017-06-13 12:42:20,999 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337940999 
+2017-06-13 12:42:20,999 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : ShopDetails [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700048, shopLatitude=null, shopLongitude=null] 
+2017-06-13 12:42:21,000 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337941000 : Total time taken : 1 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.ShopDetails */ update
+            shop_details 
+        set
+            shop_address=?,
+            shop_latitude=?,
+            shop_longitude=?,
+            shop_name=?,
+            shop_pincode=? 
+        where
+            shop_id=?
+2017-06-13 12:42:21,016 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:163) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : updateShopFlag : true 
+2017-06-13 12:42:21,016 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:addShop:137) |  | In GeoLocationAppTransanctionLogServiceImpl:addShop : Completes Execution : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700048, shopLatitude=null, shopLongitude=null, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:21,017 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:populateShopCoordinates:230) |  | In GeoLocationAppTransanctionLogServiceImpl:populateShopCoordinates : Starts Executing : with : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700048, shopLatitude=null, shopLongitude=null, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:21,017 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:35) |  | In GeoLocationRestClient:callGeoLocationRestApi : Starts Executing : with : pinCode : 700048 
+2017-06-13 12:42:21,017 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:49) |  | In GeoLocationRestClient:callGeoLocationRestApi : populatedGeoLocationApiUrl : https://maps.googleapis.com/maps/api/geocode/json?address=700048 
+2017-06-13 12:42:21,182 | INFO  | (GeoLocationRestClient.java:callGeoLocationRestApi:81) |  | In GeoLocationRestClient:callGeoLocationRestApi : Completes Execution : Toatl Time Taken : 164 
+2017-06-13 12:42:21,193 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:populateShopCoordinates:280) |  | In GeoLocationAppTransanctionLogServiceImpl:populateShopCoordinates : Completes Execution : geoLocationAppRequest : GeoLocationAppRequest [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700048, shopLatitude=22.6015112, shopLongitude=88.4003915, distance=null, errorCode=null, errorMessage=null] 
+2017-06-13 12:42:21,193 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:145) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Starts Executing 
+2017-06-13 12:42:21,194 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337941194 
+2017-06-13 12:42:21,194 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : ShopDetails [shopId=1, shopName=Test_Name_1, shopAddress=Test_Address_1, shopPincode=700048, shopLatitude=22.6015112, shopLongitude=88.4003915] 
+2017-06-13 12:42:21,195 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337941195 : Total time taken : 1 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.ShopDetails */ update
+            shop_details 
+        set
+            shop_address=?,
+            shop_latitude=?,
+            shop_longitude=?,
+            shop_name=?,
+            shop_pincode=? 
+        where
+            shop_id=?
+2017-06-13 12:42:21,196 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateShop:163) |  | In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : updateShopFlag : true 
+2017-06-13 12:42:21,197 | INFO  | (GeoLocationAppController.java:addShop:177) |  | In GeoLocationAppController:createAddress : Completes Execution : Toatl Time Taken : 210 
+2017-06-13 12:42:21,199 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:81) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Starts Executing 
+2017-06-13 12:42:21,199 | INFO  | (GeoLocationAppDataAccessService.java:find:47) |  | In GeoLocationAppDataAccessService:find : Before calling Database Operation : startTime : 1497337941199 
+2017-06-13 12:42:21,200 | INFO  | (GeoLocationAppDataAccessService.java:find:48) |  | In GeoLocationAppDataAccessService:find : id : 69b23c12-d54a-4e95-af96-d156c247c72e 
+2017-06-13 12:42:21,200 | INFO  | (GeoLocationAppDataAccessService.java:find:53) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337941200 : Total time taken : 1 
+2017-06-13 12:42:21,201 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:90) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Update :transactionLog : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=2017-06-13 12:42:21, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:21,202 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:59) |  | In GeoLocationAppDataAccessService:update : Before calling Database Operation : startTime : 1497337941202 
+2017-06-13 12:42:21,202 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:60) |  | In GeoLocationAppDataAccessService:update : entity : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=2017-06-13 12:42:21, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:21,203 | INFO  | (GeoLocationAppDataAccessService.java:updateTransanctionLog:65) |  | In GeoLocationAppDataAccessService:find : After calling Database Operation : endTime : 1497337941203 : Total time taken : 1 
+Hibernate: 
+    /* update
+        com.sam.geolocationapp.entities.TransactionLog */ update
+            transanction_log 
+        set
+            api_key=?,
+            client_ip=?,
+            email_id=?,
+            operation_name=?,
+            request_body=?,
+            request_time=?,
+            request_type=?,
+            response_body=?,
+            response_time=?,
+            token_type=? 
+        where
+            unique_log_id=?
+2017-06-13 12:42:21,206 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:92) |  | In GeoLocationAppTransanctionLogServiceImpl:insertToDb : After Update :transactionLog : TransactionLog [uniqueLogId=69b23c12-d54a-4e95-af96-d156c247c72e, emailId=samok.sinha@gmail.com, apiKey=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW1vay5zaW5oYUBnbWFpbC5jb20iLCJUb2tlblR5cGUiOiJBUElfS0VZIiwiZW1haWxpZCI6InNhbW9rLnNpbmhhQGdtYWlsLmNvbSIsImV4cCI6MTQ5NzM0NTEzNiwiaWF0IjoxNDk3MzM3OTM2LCJqdGkiOiI5NmExMzE1Yi0xNWNkLTQwMjYtOTBhOS1lMTA2YmVlMGZiYmQifQ.mUVwElGDCuDD-KJCVG3MY36ywz0CAXJgmw6r45hOls4, tokenType=API_KEY, requestType=post, operationName=addShop, requestTime=2017-06-13 12:42:20, requestBody={"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700048}, responseTime=2017-06-13 12:42:21, responseBody={"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}}, clientIp=127.0.0.1] 
+2017-06-13 12:42:21,207 | INFO  | (GeoLocationAppTransanctionLogServiceImpl.java:updateToDb:99) |  | In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Completes Execution : updateToDbFlag : true 
+2017-06-13 12:42:21,210 | INFO  | (GeoLocationAddShopTest.java:addShop:103) |  | In GeoLocationControllerTest:addShop : geoLocationAppResponseString : {"status":"Success","response":{"shopId":1,"shopName":"Test_Name_1","shopAddress":"Test_Address_1","shopPincode":700078,"shopLatitude":"22.5074344","shopLongitude":"88.3872835"}} 
+2017-06-13 12:42:21,211 | INFO  | (GeoLocationAddShopTest.java:addShop:104) |  | In GeoLocationControllerTest:addShop : Status : 200 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
