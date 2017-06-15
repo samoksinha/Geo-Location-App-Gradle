@@ -16,7 +16,8 @@ buildscript {
 }
 
 // Apply the java-library plugin to add support for Java Library
-apply plugin: 'java-library'
+//apply plugin: 'java-library'
+apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
