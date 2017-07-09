@@ -20,6 +20,13 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+/**
+ * @author Samok Prasad Sinha
+ *
+ * This class provides various JJWT utility functionality for Authentication and Generation of API key
+ * used through out the application.
+ */
+
 @Component
 public class GeoLocationAppTokenUtil {
 
@@ -37,6 +44,14 @@ public class GeoLocationAppTokenUtil {
 	@Value("${com.sam.geolocation.token.signingKey}")
 	protected String tokenSignKey;
 	
+	/**
+	 * @param emailId
+	 * @return
+	 * @throws GeoLocationAppException
+	 * 
+	 * It creates the Access Token based on emailId and returns.
+	 * If any Exception occurs it wraps that exception into GeoLocationAppException and throws back to the calling code.
+	 */
 	public String createAccessToken(String emailId) 
 			throws GeoLocationAppException {
 		
@@ -65,6 +80,14 @@ public class GeoLocationAppTokenUtil {
         }
     }
 	
+	/**
+	 * @param token
+	 * @return
+	 * @throws GeoLocationAppException
+	 * 
+	 * It validates the access token and if found invalid then throws proper exception.
+	 * If any Exception occurs it wraps that exception into GeoLocationAppException and throws back to the calling code.
+	 */
 	public boolean isValid(String token) 
 			throws GeoLocationAppException {
 		boolean isValidFlag = false;
@@ -80,11 +103,25 @@ public class GeoLocationAppTokenUtil {
         return isValidFlag;
     }
 	
+	/**
+	 * @param auth
+	 * @return
+	 * 
+	 * It removes "Bearer " phrase from the access token and returns.
+	 */
 	public String extractJwtTokenFromAuthorizationHeader(String auth) {
 	    return auth.replaceFirst(GeoLocationAppConstants.ACCESS_TOKEN_PREFIX_VALUE, GeoLocationAppConstants.EMPTY_DELIMITER_VALUE)
 	    		   .replace(GeoLocationAppConstants.WHITE_SPACE_DELIMITER_VALUE, GeoLocationAppConstants.EMPTY_DELIMITER_VALUE);
 	}
 	
+	/**
+	 * @param jwsToken
+	 * @return
+	 * @throws GeoLocationAppException
+	 * 
+	 * It extracts access token type value and returns.
+	 * If any Exception occurs it wraps that exception into GeoLocationAppException and throws back to the calling code.
+	 */
 	public String getTokenType(String jwsToken) 
 			throws GeoLocationAppException {
 		
@@ -103,6 +140,14 @@ public class GeoLocationAppTokenUtil {
         return tokenType;
     }
 	
+    /**
+     * @param jwsToken
+     * @return
+     * @throws GeoLocationAppException
+     * 
+     * It extracts email id value from access token and return.
+     * If any Exception occurs it wraps that exception into GeoLocationAppException and throws back to the calling code.
+     */
     public String getEamilId(String jwsToken) 
     		throws GeoLocationAppException {
     	
@@ -121,6 +166,14 @@ public class GeoLocationAppTokenUtil {
         return emailId;
     }
     
+    /**
+     * @param httpHeadersMap
+     * @return
+     * @throws GeoLocationAppException
+     * 
+     * It extracts out email id from httpHeadersMap object and return it.
+     * If any Exception occurs it wraps that exception into GeoLocationAppException and throws back to the calling code.
+     */
     public String getEmailId(Map<String, String> httpHeadersMap) 
     		throws GeoLocationAppException {
     	
@@ -149,6 +202,12 @@ public class GeoLocationAppTokenUtil {
     	return emailId;
     }
 	
+	/**
+	 * @param minutes
+	 * @return
+	 * 
+	 * It created access token expiry date based on minutes and returns.
+	 */
 	private Date getExpiryDate(int minutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

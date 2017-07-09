@@ -1,5 +1,14 @@
 package com.sam.geolocationapp.exceptions;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This Interface provides all the Error Codes that are applicable through out the application.
+ * Based on these Error Codes application will search in the geo-location-errorcodes.properties
+ * file for Error Details. 
+ *
+ */
+
 public interface ErrorCodes {
 
 	public static final int ERROR_CODE_103 = 103;
@@ -20,4 +29,6 @@ public interface ErrorCodes {
 	public static final int ERROR_CODE_118 = 118;
 	public static final int ERROR_CODE_119 = 119;
 	public static final int ERROR_CODE_120 = 120;
+	public static final int ERROR_CODE_121 = 121;
+	public static final int ERROR_CODE_122 = 122;
 }

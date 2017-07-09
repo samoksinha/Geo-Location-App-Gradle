@@ -46,6 +46,9 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+		compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
+		compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
+		compile group: 'com.google.maps', name: 'google-maps-services', version: '0.1.19'
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.4.1.RELEASE') {
 			exclude(module: 'spring-boot-starter-logging')
     }

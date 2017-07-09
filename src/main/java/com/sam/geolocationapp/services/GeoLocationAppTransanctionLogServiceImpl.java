@@ -1,7 +1,14 @@
 package com.sam.geolocationapp.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -9,18 +16,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 import com.sam.geolocationapp.entities.ShopDetails;
 import com.sam.geolocationapp.entities.TransactionLog;
 import com.sam.geolocationapp.exceptions.ErrorCodes;
 import com.sam.geolocationapp.exceptions.ExceptionType;
 import com.sam.geolocationapp.exceptions.GeoLocationAppException;
-import com.sam.geolocationapp.models.GeoCodingResponse;
-import com.sam.geolocationapp.models.GeoCodingResultResponse;
 import com.sam.geolocationapp.models.GeoLocationAppRequest;
-import com.sam.geolocationapp.rest.client.GeoLocationRestClient;
+import com.sam.geolocationapp.rest.client.GeoCodeClient;
 import com.sam.geolocationapp.utility.GeoLocationAppConstants;
 import com.sam.geolocationapp.utility.GeoLocationAppUtility;
+
+/**
+ * @author Samok Sinha
+ * 
+ * This is the Business interface implementation class which provides the implementation of the Geo Location Application
+ * functionality in a central place.
+ */
 
 @Service
 public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppTransanctionLogService {
@@ -31,22 +44,54 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 	private GeoLocationAppDataAccessService geoLocationAppDataAccessService;
 	
 	@Autowired
-	private GeoLocationRestClient geoLocationRestClient;
+	private GeoCodeClient geoCodeClient;
 	
-	@Value("${com.sam.geolocation.query.findShopByName}")
-	protected String findShopByNameQuery;
+	@Value("${com.sam.geolocation.query.findShopByPin}")
+	protected String findShopByPinQuery;
 	
-	@Value("${com.sam.geolocation.query.findShopByName.searchKey}")
-	protected String findShopByNameSearchKey;
+	@Value("${com.sam.geolocation.query.findShopByPin.searchKey}")
+	protected String findShopByPinSearchKey;
 	
 	@Value("${com.sam.geolocation.query.findAllShopsNameQuery}")
 	protected String findAllShopsNameQuery;
 	
-	@Override
-	public boolean insertToDb(String emailId,  String uniqueLogId, String accessToken, String tokenType, String requestType,
-			  				  String operationName,  String requestTime, String requestBody, String clientIp) 
+	@Value("${com.sam.geolocation.semaphore.concurrentUser}")
+	protected String concurrentUser;
+	
+	private Semaphore singleThreadAccessSemaphore;
+	
+	/**
+	 * @throws GeoLocationAppException
+	 * 
+	 * It is called when this Bean is initialized by the Spring Container to set the necessary
+	 * Semaphore and Configuration.
+	 * 
+	 */
+	@PostConstruct
+	public void init() 
 			throws GeoLocationAppException {
-		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Starts Executing");
+		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:init : Initializing GeoLocationAppTransanctionLogServiceImpl Bean : ");
+		
+		try {
+			singleThreadAccessSemaphore = new Semaphore(Integer.parseInt(concurrentUser));
+		} catch (Exception e) {
+			throw new GeoLocationAppException(ExceptionType.TECHNNICAL, e);
+		}
+		
+		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:init : Successfully initialized GeoLocationAppTransanctionLogServiceImpl Bean :");
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#insertTransanctionLog(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * It provides the functionality to insert details of Request from client to the underlying database for reconciliation purpose using uniqueLogId.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
+	@Override
+	public boolean insertTransanctionLog(String emailId,  String uniqueLogId, String accessToken, String tokenType, String requestType,
+			  				  			 String operationName,  String requestTime, String requestBody, String clientIp) 
+			throws GeoLocationAppException {
+		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertTransanctionLog : Starts Executing");
 		
 		boolean insertToDbFlag = false;
 		TransactionLog transactionLog = null;
@@ -62,23 +107,29 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 			transactionLog.setRequestBody(requestBody);
 			transactionLog.setClientIp(clientIp);
 			
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Insert :transactionLog : " +transactionLog);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertTransanctionLog : Before Insert :transactionLog : " +transactionLog);
 			geoLocationAppDataAccessService.create(transactionLog);
 			insertToDbFlag = true;
 			
 		} catch (Exception e) {
 			throw new GeoLocationAppException(ExceptionType.TECHNNICAL, e);
 		} finally {
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Completes Execution : " +insertToDbFlag);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertTransanctionLog : Completes Execution : " +insertToDbFlag);
 		}
 		
 		return insertToDbFlag;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#updateTransanctionLog(java.lang.String, java.lang.String, java.lang.String)
+	 * 
+	 * It provides the functionality to update details of Response to client to the underlying database for reconciliation purpose using uniqueLogId.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
 	@Override
-	public boolean updateToDb(String uniqueLogId,  String responseTime, String responseBody) 
+	public boolean updateTransanctionLog(String uniqueLogId,  String responseTime, String responseBody) 
 			throws GeoLocationAppException {
-		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Starts Executing");
+		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateTransanctionLog : Starts Executing");
 		
 		boolean updateToDbFlag = false;
 		TransactionLog transactionLog = null;
@@ -87,59 +138,105 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 			transactionLog.setResponseTime(responseTime);
 			transactionLog.setResponseBody(responseBody);
 			
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertToDb : Before Update :transactionLog : " +transactionLog);
-			transactionLog = geoLocationAppDataAccessService.updateTransanctionLog(transactionLog);
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:insertToDb : After Update :transactionLog : " +transactionLog);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateTransanctionLog : Before Update :transactionLog : " +transactionLog);
+			transactionLog = geoLocationAppDataAccessService.update(transactionLog);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateTransanctionLog : After Update :transactionLog : " +transactionLog);
 			
 			updateToDbFlag = true;
 			
 		} catch (Exception e) {
 			throw new GeoLocationAppException(ExceptionType.TECHNNICAL, e);
 		} finally {
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateToDb : Completes Execution : updateToDbFlag : " +updateToDbFlag);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateTransanctionLog : Completes Execution : updateToDbFlag : " +updateToDbFlag);
 		}
 		
 		return updateToDbFlag;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#addShop(com.sam.geolocationapp.models.GeoLocationAppRequest)
+	 * 
+	 * It provides functionality to Add Shop Details to the underlying database and returned Shop Details based on business validation.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
 	@Override
-	public GeoLocationAppRequest addShop(GeoLocationAppRequest geoLocationAppRequest) throws GeoLocationAppException {
+	public Map<String, GeoLocationAppRequest> addShop(GeoLocationAppRequest currentVersionRequest) throws GeoLocationAppException {
 		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:addShop : Starts Executing");
 		
 		ShopDetails shopDetails = null;
-		GeoLocationAppRequest returnedGeoLocationAppRequest = new GeoLocationAppRequest();
+		GeoLocationAppRequest previousVersionRequest = null;
+		Map<String, GeoLocationAppRequest> addShopResponseMap = null;
+		boolean updateShopFlag = false;
+		boolean createShopFlag = false;
 		try {
-			shopDetails = this.findShop(geoLocationAppRequest.getShopName());
+			addShopResponseMap = new LinkedHashMap<>();
+			
+			singleThreadAccessSemaphore.acquire();
+			shopDetails = this.findShop(currentVersionRequest);
 			if(GeoLocationAppUtility.validateObject(shopDetails)) {
-				returnedGeoLocationAppRequest.setShopId(shopDetails.getShopId());
-				returnedGeoLocationAppRequest.setShopName(shopDetails.getShopName());
-				returnedGeoLocationAppRequest.setShopAddress(shopDetails.getShopAddress());
-				returnedGeoLocationAppRequest.setShopPincode(shopDetails.getShopPincode());
-				returnedGeoLocationAppRequest.setShopLatitude(shopDetails.getShopLatitude());
-				returnedGeoLocationAppRequest.setShopLongitude(shopDetails.getShopLongitude());
+				previousVersionRequest = new GeoLocationAppRequest();
+				previousVersionRequest.setShopId(shopDetails.getShopId());
+				previousVersionRequest.setShopName(shopDetails.getShopName());
+				previousVersionRequest.setShopAddress(shopDetails.getShopAddress());
+				previousVersionRequest.setShopPincode(shopDetails.getShopPincode());
 				
-				geoLocationAppRequest.setShopId(shopDetails.getShopId());
-				this.updateShop(geoLocationAppRequest);
+				if(GeoLocationAppUtility.validateString(shopDetails.getShopLatitude())) {
+					previousVersionRequest.setShopLatitude(shopDetails.getShopLatitude());
+				} else {
+					previousVersionRequest.setShopLatitude(GeoLocationAppConstants.EMPTY_DELIMITER_VALUE);
+				}
+				if(GeoLocationAppUtility.validateString(shopDetails.getShopLongitude())) {
+					previousVersionRequest.setShopLongitude(shopDetails.getShopLongitude());
+				} else {
+					previousVersionRequest.setShopLongitude(GeoLocationAppConstants.EMPTY_DELIMITER_VALUE);
+				}
+				
+				currentVersionRequest.setShopId(shopDetails.getShopId());
+				addShopResponseMap.put(GeoLocationAppConstants.ADD_SHOP_PREVIOUS_VERSION_KEY, previousVersionRequest);
 			} else {
 				shopDetails = new ShopDetails();
-				shopDetails.setShopName(geoLocationAppRequest.getShopName());
-				shopDetails.setShopAddress(geoLocationAppRequest.getShopAddress());
-				shopDetails.setShopPincode(geoLocationAppRequest.getShopPincode());
+				shopDetails.setShopName(currentVersionRequest.getShopName());
+				shopDetails.setShopAddress(currentVersionRequest.getShopAddress());
+				shopDetails.setShopPincode(currentVersionRequest.getShopPincode());
 				geoLocationAppDataAccessService.create(shopDetails);
 				
-				geoLocationAppRequest.setShopId(shopDetails.getShopId());
-				returnedGeoLocationAppRequest = geoLocationAppRequest;
+				createShopFlag = true;
+				currentVersionRequest.setShopId(shopDetails.getShopId());
 			}
 			
+			if(createShopFlag 
+					|| !(GeoLocationAppUtility.validateString(shopDetails.getShopLatitude())
+							&& GeoLocationAppUtility.validateString(shopDetails.getShopLongitude()))) {
+				currentVersionRequest = this.populateShopCoordinates(currentVersionRequest);
+			} else {
+				currentVersionRequest.setShopLatitude(shopDetails.getShopLatitude());
+				currentVersionRequest.setShopLongitude(shopDetails.getShopLongitude());
+			}
+			
+			updateShopFlag = this.updateShop(currentVersionRequest);
+			if(!updateShopFlag) {
+				throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_115);
+			}
+			
+			addShopResponseMap.put(GeoLocationAppConstants.ADD_SHOP_CURRENT_VERSION_KEY, currentVersionRequest);
+			
+		} catch (GeoLocationAppException gae) {
+			throw gae;
 		} catch (Exception e) {
 			throw new GeoLocationAppException(ExceptionType.TECHNNICAL, e);
 		} finally {
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:addShop : Completes Execution : geoLocationAppRequest : " +geoLocationAppRequest);
+			singleThreadAccessSemaphore.release();
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:addShop : Completes Execution : addShopResponseMap : " +addShopResponseMap);
 		}
 		
-		return returnedGeoLocationAppRequest;
+		return addShopResponseMap;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#updateShop(com.sam.geolocationapp.models.GeoLocationAppRequest)
+	 * It provides functionality to update Shop Details to the underlying Database.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
 	@Override
 	public boolean updateShop(GeoLocationAppRequest geoLocationAppRequest) throws GeoLocationAppException {
 		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateShop : Starts Executing");
@@ -154,7 +251,7 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 			shopDetails.setShopLatitude(geoLocationAppRequest.getShopLatitude());
 			shopDetails.setShopLongitude(geoLocationAppRequest.getShopLongitude());
 			
-			geoLocationAppDataAccessService.updateTransanctionLog(shopDetails);
+			geoLocationAppDataAccessService.update(shopDetails);
 			updateShopFlag = true;
 			
 		} catch (Exception e) {
@@ -166,30 +263,63 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 		return updateShopFlag;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#findShop(com.sam.geolocationapp.models.GeoLocationAppRequest)
+	 * 
+	 * It provides functionality to retrieve Shop Details from underlying Database based on Shop Pin Code and does Business Validation and returns the Shop Details.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
 	@Override
-	public ShopDetails findShop(String shopName) throws GeoLocationAppException {
+	public ShopDetails findShop(GeoLocationAppRequest geoLocationAppRequest) throws GeoLocationAppException {
 		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:findShop : Starts Executing");
 		
 		List<ShopDetails> shopDetailsList = new ArrayList<>();
 		ShopDetails shopDetails = null;
+		Iterator<ShopDetails> shopDetailsIterator = null;
+		Map<String, ShopDetails> shopDetailsMap = new HashMap<>();
 		try {
-			shopDetailsList = geoLocationAppDataAccessService.findShopByName(shopName, findShopByNameQuery, findShopByNameSearchKey);
-			if(GeoLocationAppUtility.validateObject(shopDetailsList)) {
-				shopDetails = shopDetailsList.get(0);
+			shopDetailsList = geoLocationAppDataAccessService.findShopByPin(geoLocationAppRequest.getShopPincode(), 
+																			findShopByPinQuery, findShopByPinSearchKey);
+			shopDetailsIterator = shopDetailsList.iterator();
+			while(shopDetailsIterator.hasNext()) {
+				ShopDetails shop = shopDetailsIterator.next();
+				
+				shopDetailsMap.put(shop.getShopAddress(), shop);
+				shopDetailsIterator.remove();
 			}
 			
+			if(shopDetailsMap.containsKey(geoLocationAppRequest.getShopAddress())){
+				shopDetails = shopDetailsMap.get(geoLocationAppRequest.getShopAddress());
+			}
+			
+			if(GeoLocationAppUtility.validateObject(shopDetails)) {
+				if(shopDetails.getShopName().equalsIgnoreCase(geoLocationAppRequest.getShopName())
+						&& (GeoLocationAppUtility.validateString(shopDetails.getShopLatitude())
+								&& GeoLocationAppUtility.validateString(shopDetails.getShopLongitude()))) {
+					throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_121);
+				}
+			}
+			
+		} catch (GeoLocationAppException gae) {
+			throw gae;
 		} catch (Exception e) {
 			throw new GeoLocationAppException(ExceptionType.TECHNNICAL, e);
 		} finally {
-			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:updateShop : Completes Execution : shopDetails : " +shopDetails);
+			LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:findShop : Completes Execution : shopDetails : " +shopDetails);
 		}
 		
 		return shopDetails;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#findAllShops(com.sam.geolocationapp.models.GeoLocationAppRequest)
+	 * 
+	 * It provides functionality to retrieve all Shop Details from underlying Database and returned List of Shop Details.
+	 * If any exception occurs it converts that Exception to Custom GeoLocationAppException and throw it back to the calling code.
+	 */
 	@Override
-	public List<GeoLocationAppRequest> findAllShops(String latitude, String longitude) throws GeoLocationAppException {
-		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:findAllShops : Starts Executing : with : latitude : " +latitude+ " : longitude : " +longitude);
+	public List<GeoLocationAppRequest> findAllShops(GeoLocationAppRequest geoLocationAppRequest) throws GeoLocationAppException {
+		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:findAllShops : Starts Executing : with : latitude : " +geoLocationAppRequest.getShopLatitude()+ " : longitude : " +geoLocationAppRequest.getShopLongitude());
 		
 		List<ShopDetails> shopDetailsList = new ArrayList<>();
 		List<GeoLocationAppRequest> geoLocationAppRequestList = new ArrayList<>();
@@ -199,7 +329,9 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 				LOGGER.debug("In GeoLocationAppTransanctionLogServiceImpl:findAllShops : shopDetailsList : " +shopDetailsList);
 			}
 			if(GeoLocationAppUtility.validateObject(shopDetailsList)) {
-				geoLocationAppRequestList = GeoLocationAppUtility.calculateDistance(shopDetailsList, latitude, longitude);
+				geoLocationAppRequestList = GeoLocationAppUtility.calculateDistance(shopDetailsList, 
+																					geoLocationAppRequest.getShopLatitude(), 
+																					geoLocationAppRequest.getShopLongitude());
 				if(LOGGER.isDebugEnabled()) {
 					LOGGER.debug("In GeoLocationAppTransanctionLogServiceImpl:findAllShops : Before Sorting with Distance : geoLocationAppRequestList : " +geoLocationAppRequestList);
 				}
@@ -224,52 +356,40 @@ public class GeoLocationAppTransanctionLogServiceImpl implements GeoLocationAppT
 		return geoLocationAppRequestList;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.sam.geolocationapp.services.GeoLocationAppTransanctionLogService#populateShopCoordinates(com.sam.geolocationapp.models.GeoLocationAppRequest)
+	 * 
+	 * It provides the functionality to populate Shop Latitude and Longitude by using Shop Address and Shop Pincode by calling GeoCoding API
+	 * and returns the updated Shop Details with Latitude and Longitude.
+	 * If any exception occurs it updates the Shop Details with the necessary information.
+	 */
 	@Override
 	public GeoLocationAppRequest populateShopCoordinates(GeoLocationAppRequest geoLocationAppRequest)
 			throws GeoLocationAppException {
 		LOGGER.info("In GeoLocationAppTransanctionLogServiceImpl:populateShopCoordinates : Starts Executing : with : geoLocationAppRequest : " +geoLocationAppRequest);
-		
-		String geloLocationApiResponseString = "";
-		ObjectMapper objectMapper = null;
-		GeoCodingResponse geoCodingResponse = null;
-		GeoCodingResultResponse geoCodingResultResponse = null;
+
+		GeocodingResult[] geocodingResultArray = null;
+		GeocodingResult geocodingResult = null;
+		LatLng latLong = null;
 		try {
-			objectMapper = new ObjectMapper();
-			
-			geloLocationApiResponseString = geoLocationRestClient.callGeoLocationRestApi(String.valueOf(geoLocationAppRequest.getShopPincode()));
-			if(!GeoLocationAppUtility.validateString(geloLocationApiResponseString)) {
-				throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_117);
+			geocodingResultArray = geoCodeClient.callGeoCodeApi(geoLocationAppRequest);
+			if(!(geocodingResultArray != null && geocodingResultArray.length > 0)) {
+				throw new GeoLocationAppException(ExceptionType.INTERNAL, ErrorCodes.ERROR_CODE_119);
 			}
 			
-			geoCodingResponse = objectMapper.readValue(geloLocationApiResponseString, GeoCodingResponse.class);
-			if(!GeoLocationAppUtility.validateObject(geoCodingResponse)) {
-				throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_117);
-			}
-			
-			if(!(GeoLocationAppUtility.validateString(geoCodingResponse.getStatus()) 
-					&& (geoCodingResponse.getStatus().equalsIgnoreCase(GeoLocationAppConstants.GEO_LOCATION_API_SUCCESS_VALUE)))) {
-				if(geoCodingResponse.getStatus().equalsIgnoreCase(GeoLocationAppConstants.GEO_LOCATION_API_EMPTY_RESULT_VALUE)) {
-					throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_119);
-				} else {
-					throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_117);
-				}
-			}
-			
-			geoCodingResultResponse = geoCodingResponse.getGeoCodingResultResponseList().get(0);
-			if(!GeoLocationAppUtility.validateObject(geoCodingResponse)) {
-				throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_117);
-			}
-			
-			if(GeoLocationAppUtility.validateObject(geoCodingResultResponse.getGeometry()) 
-					&& GeoLocationAppUtility.validateObject(geoCodingResultResponse.getGeometry().getLocation())) {
-				geoLocationAppRequest.setShopLatitude(geoCodingResultResponse.getGeometry().getLocation().getLat());
-				geoLocationAppRequest.setShopLongitude(geoCodingResultResponse.getGeometry().getLocation().getLng());
+			geocodingResult = geocodingResultArray[0];
+			if(GeoLocationAppUtility.validateObject(geocodingResult.geometry)
+					&& GeoLocationAppUtility.validateObject(geocodingResult.geometry.location)) {
+				
+				latLong = geocodingResult.geometry.location;
+				geoLocationAppRequest.setShopLatitude(String.valueOf(latLong.lat));
+				geoLocationAppRequest.setShopLongitude(String.valueOf(latLong.lng));
 			} else {
-				throw new GeoLocationAppException(ExceptionType.BUSINESS, ErrorCodes.ERROR_CODE_117);
+				throw new GeoLocationAppException(ExceptionType.INTERNAL, ErrorCodes.ERROR_CODE_119);
 			}
 			
 		} catch (GeoLocationAppException gae) {
-			if(gae.getExceptionType().getExceptionType().equalsIgnoreCase(ExceptionType.BUSINESS.getExceptionType())) {
+			if(gae.getExceptionType().getExceptionType().equalsIgnoreCase(ExceptionType.INTERNAL.getExceptionType())) {
 				geoLocationAppRequest.setErrorCode(String.valueOf(gae.getGeoLocationAppFaultInfo().getErrorCode()));
 				geoLocationAppRequest.setErrorMessage(gae.getGeoLocationAppFaultInfo().getErrorMessage());
 			}

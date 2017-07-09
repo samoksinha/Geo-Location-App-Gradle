@@ -13,6 +13,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Samok Prasad Sinha
+ *
+ * This class is called at the application start up in the lifetime of the Spring Container and configures error details
+ * from geo-location-errorcodes.properties file.
+ */
+
 @Component
 public class GeoLocationAppErrorConfigurator implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -23,6 +30,11 @@ public class GeoLocationAppErrorConfigurator implements ApplicationListener<Cont
 	@Value("${com.sam.geolocation.errorMessage.file.name}")
 	protected String errorPropertyFileName;
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+	 * It executes on appllication startup event and calls the loadAndReturnPropertiesToMap method to load geo-location-errorcodes.properties
+	 * file.
+	 */
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		LOGGER.info("Entering ErrorsPropertyConfigurerStartUp:onApplicationEvent : with : contextStratFlag : " +contextStratFlag);
@@ -38,15 +50,18 @@ public class GeoLocationAppErrorConfigurator implements ApplicationListener<Cont
 		LOGGER.info("Leaving ErrorsPropertyConfigurerStartUp:onApplicationEvent : contextStratFlag : " +contextStratFlag);
 	}
 
+	/**
+	 * @return
+	 * 
+	 * It loads the geo-location-errorcodes.properties into Map object and then returns it.
+	 * If any exception occurs it logs the exception and returns Empty Map Object.
+	 */
 	private Map<String, String> loadAndReturnPropertiesToMap() {
 		LOGGER.info("Entering ErrorsPropertyConfigurerStartUp:loadAndReturnPropertiesToMap");
 		
-		Map<String, String> errorMap = null;
-		Properties  errorProperties = null;
+		Map<String, String> errorMap = new HashMap<String,String>();;
+		Properties  errorProperties = new Properties();;
 		try (InputStream errorPropertiesFileInputStream = this.getClass().getResourceAsStream(errorPropertyFileName)) {
-			errorMap = new HashMap<String,String>();
-			errorProperties = new Properties();
-			
 			errorProperties.load(errorPropertiesFileInputStream);
 			for (final String name: errorProperties.stringPropertyNames()) {
 				errorMap.put(name.trim(), errorProperties.getProperty(name).trim());

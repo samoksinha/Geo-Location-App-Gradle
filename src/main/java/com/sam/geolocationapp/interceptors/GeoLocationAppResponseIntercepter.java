@@ -1,4 +1,3 @@
-
 package com.sam.geolocationapp.interceptors;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +20,15 @@ import com.sam.geolocationapp.services.GeoLocationAppTransanctionLogServiceImpl;
 import com.sam.geolocationapp.utility.GeoLocationAppConstants;
 
 
+/**
+ * @author Samok Sinha
+ * 
+ * This Class is responsible for intercepting all the Response
+ * coming out to the application. It validates every request
+ * and do Transaction Logging for Response details.
+ *
+ */
+
 @Aspect
 @Component
 public class GeoLocationAppResponseIntercepter {
@@ -33,6 +41,15 @@ public class GeoLocationAppResponseIntercepter {
     @Value("${com.sam.geolocation.dateFormat}")
 	protected String dateFormat;
     
+	/**
+	 * @param joinPoint
+	 * @param returnValue
+	 * @throws Throwable
+	 * 
+	 * It Logs the every Response coming out to the application into transanction_log table. It first identify
+	 * the Response with  Request with uniqueLogId and then updates the record with the necessary Response details.
+	 * 
+	 */
 	@SuppressWarnings({ "rawtypes" })
 	@AfterReturning(pointcut="within(com.sam.geolocationapp.rest.controllers..*)", returning="returnValue")
 	public void afterReturningAdvice(JoinPoint joinPoint, Object returnValue) 
@@ -59,7 +76,7 @@ public class GeoLocationAppResponseIntercepter {
     		responseTime = Calendar.getInstance().getTime();
     		uniqueLogId = (String) MDC.get(GeoLocationAppConstants.MDC_UNIQUE_LOG_ID);
     		
-    		geoLocationAppTransanctionLogServiceImpl.updateToDb(uniqueLogId, simpleDateFormat.format(responseTime), responseBody);
+    		geoLocationAppTransanctionLogServiceImpl.updateTransanctionLog(uniqueLogId, simpleDateFormat.format(responseTime), responseBody);
     		MDC.clear();
     		
     	} catch(GeoLocationAppException gae){

@@ -7,6 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This class is the Entity class which maps TransactionLog into the underlying
+ * database table of transanction_log .
+ *
+ */
+
 @Entity
 @Table(name="transanction_log")
 public class TransactionLog implements Serializable {

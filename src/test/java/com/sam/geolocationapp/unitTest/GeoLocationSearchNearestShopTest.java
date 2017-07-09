@@ -61,7 +61,7 @@ public class GeoLocationSearchNearestShopTest {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 		    headers.add("emailId", "samok.sinha@gmail.com");
 		    
-		    httpGetEntity = new HttpEntity<String>("parameters", headers);
+		    httpGetEntity = new HttpEntity<String>(null, headers);
 		    
 		    responseEntity = restTemplateClient.exchange(getApiKeyUrl, HttpMethod.GET, 
 		    									httpGetEntity, GeoLocationAppResponse.class);

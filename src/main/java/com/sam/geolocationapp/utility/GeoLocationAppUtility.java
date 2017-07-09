@@ -7,12 +7,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,6 +26,13 @@ import com.sam.geolocationapp.exceptions.ExceptionType;
 import com.sam.geolocationapp.exceptions.GeoLocationAppException;
 import com.sam.geolocationapp.exceptions.GeoLocationAppFaultInfo;
 import com.sam.geolocationapp.models.GeoLocationAppRequest;
+import com.sam.geolocationapp.models.GeoLocationAppResponse;
+
+/**
+ * @author Samok Prasad Sinha
+ *
+ * This class provides various utility functionality used through out the application.
+ */
 
 public class GeoLocationAppUtility {
 	
@@ -84,16 +94,32 @@ public class GeoLocationAppUtility {
 		return validateFlag;
 	}
 	
+	/**
+	 * @param exceptionType
+	 * @param errorCode
+	 * @return
+	 * 
+	 * It resolves error messages bases on Exception Type and error code from error map and returns 
+	 * GeoLocationAppFaultInfo model object.
+	 */
 	public static GeoLocationAppFaultInfo resolveErrorMessage(ExceptionType exceptionType, int errorCode) {
 		
 		GeoLocationAppFaultInfo geoLocationAppFaultInfo = new GeoLocationAppFaultInfo();
-		if(exceptionType.getExceptionType().equalsIgnoreCase(ExceptionType.BUSINESS.getExceptionType())) {
+		if(exceptionType.getExceptionType().equalsIgnoreCase(ExceptionType.BUSINESS.getExceptionType())
+				|| exceptionType.getExceptionType().equalsIgnoreCase(ExceptionType.INTERNAL.getExceptionType())) {
 			geoLocationAppFaultInfo.setErrorCode(errorCode);
 			geoLocationAppFaultInfo.setErrorMessage(GeoLocationAppConstants.GEO_LOCATION_ERROR_MAP.get(String.valueOf(errorCode)));
 		}
 		return geoLocationAppFaultInfo;
 	}
 	
+	/**
+	 * @param exceptionType
+	 * @return
+	 * 
+	 * It resolves error messages bases on Exception Type from error map and returns 
+	 * GeoLocationAppFaultInfo model object.
+	 */
 	public static GeoLocationAppFaultInfo resolveErrorMessage(ExceptionType exceptionType) {
 		
 		GeoLocationAppFaultInfo geoLocationAppFaultInfo = new GeoLocationAppFaultInfo();
@@ -108,6 +134,72 @@ public class GeoLocationAppUtility {
 		return geoLocationAppFaultInfo;
 	}
 	
+	/**
+	 * @param throwable
+	 * @return
+	 * 
+	 * It resolves error messages bases on Throwable object from error map and returns 
+	 * GeoLocationAppFaultInfo model object.
+	 */
+	public static ResponseEntity<GeoLocationAppResponse> mapErrorMessageToResponse(Throwable throwable) {
+		
+		ResponseEntity<GeoLocationAppResponse> responseEntity = null;
+		GeoLocationAppResponse geoLocationAppResponse = new GeoLocationAppResponse();
+		if(throwable instanceof GeoLocationAppException) {
+			GeoLocationAppException geoLocationAppException = (GeoLocationAppException) throwable;
+			
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_FALIURE_VALUE);
+			geoLocationAppResponse.setResponseObject(geoLocationAppException.getGeoLocationAppFaultInfo());
+		} else {
+			GeoLocationAppFaultInfo geoLocationAppFaultInfo = new GeoLocationAppFaultInfo();
+			geoLocationAppFaultInfo.setErrorCode(GeoLocationAppConstants.GENERIC_ERROR_CODE);
+			geoLocationAppFaultInfo.setErrorMessage(GeoLocationAppConstants.GEO_LOCATION_ERROR_MAP.get(String.valueOf(GeoLocationAppConstants.GENERIC_ERROR_CODE)));
+					
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_FALIURE_VALUE);
+			geoLocationAppResponse.setResponseObject(geoLocationAppFaultInfo);
+		}
+		
+		responseEntity = new ResponseEntity<>(geoLocationAppResponse, HttpStatus.OK);
+		return responseEntity;
+	}
+	
+	/**
+	 * @param responseObject
+	 * @return
+	 * 
+	 * It creates ResponseEntity<GeoLocationAppResponse> based on Response Object and returns it.
+	 */
+	public static ResponseEntity<GeoLocationAppResponse> mapSuccessMessageToResponse(Object responseObject) {
+		
+		ResponseEntity<GeoLocationAppResponse> responseEntity = null;
+		GeoLocationAppResponse geoLocationAppResponse = new GeoLocationAppResponse();
+		if(responseObject instanceof Map) {
+			Map<?,?> responseObjectMap = (Map<?,?>) responseObject;
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_SUCCESS_VALUE);
+			geoLocationAppResponse.setResponseObject(responseObjectMap);
+		} else if(responseObject instanceof List){
+			List<?> responseObjectList = (List<?>) responseObject;
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_SUCCESS_VALUE);
+			geoLocationAppResponse.setResponseObject(responseObjectList);
+		} else if (responseObject instanceof Set) {
+			Set<?> responseObjectSet = (Set<?>) responseObject;
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_SUCCESS_VALUE);
+			geoLocationAppResponse.setResponseObject(responseObjectSet);
+		} else {
+			geoLocationAppResponse.setStatus(GeoLocationAppConstants.STATUS_SUCCESS_VALUE);
+			geoLocationAppResponse.setResponseObject(responseObject);
+		}
+		
+		responseEntity = new ResponseEntity<>(geoLocationAppResponse, HttpStatus.OK);
+		return responseEntity;
+	}
+	
+	/**
+	 * @param httpHeadersMap
+	 * @return
+	 * 
+	 * It copies parameters from a Map and return HttpHeaders Object.
+	 */
 	public static HttpHeaders copyHttpRequestHeaders(Map<String, String> httpHeadersMap) {
 		
 		HttpHeaders headers = null;
@@ -132,6 +224,8 @@ public class GeoLocationAppUtility {
 	 * @throws IOException
 	 * @throws JsonParseException
 	 * @throws JsonMappingException
+	 * 
+	 * It copies IP address from HttpServletRequest Object and returns it.
 	 */
 	public static String getIpAddress(HttpServletRequest httpRequest)
 			throws GeoLocationAppException {
@@ -162,6 +256,12 @@ public class GeoLocationAppUtility {
 	}
     
     
+	/**
+	 * @param geoLocationAppRequest
+	 * @return
+	 * 
+	 * It converts GeoLocationAppRequest Model Object into  String using ObjectMapper implemnetation.
+	 */
 	public static String getEntityBody(GeoLocationAppRequest geoLocationAppRequest) {
     	
     	String requestBody = "";
@@ -178,6 +278,15 @@ public class GeoLocationAppUtility {
         return requestBody;
     }
 	
+	/**
+	 * @param shopDetailsList
+	 * @param latitude
+	 * @param longitude
+	 * @return
+	 * 
+	 * It calculate distance based on Latitude and Longitude from List of ShopDetails objects and updates the distance 
+	 * parameter of each ShopDetails Object in that List and returns that updated List.
+	 */
 	public static List<GeoLocationAppRequest> calculateDistance(List<ShopDetails> shopDetailsList, String latitude, String longitude) {
     	
 		double theta = 0.0;
@@ -225,14 +334,34 @@ public class GeoLocationAppUtility {
         return geoLocationAppRequestList;
     }
 	
+	
+	/**
+	 * @param deg
+	 * @return
+	 * 
+	 * It converts degree to radiant and returns.
+	 */
 	public static double deg2rad(double deg) {
 		return deg * Math.PI / GeoLocationAppConstants.CONSTANT1;
 	}
 	
+	/**
+	 * @param rad
+	 * @return
+	 * 
+	 * It converts radiant to degree and returns.
+	 */
 	public static double rad2deg(double rad) {
 		return rad * GeoLocationAppConstants.CONSTANT1 / Math.PI;
 	}
 	
+	/**
+	 * @param geoLocationAppRequestList
+	 * @return
+	 * @throws GeoLocationAppException
+	 * 
+	 * It sorts list of GeoLocationAppRequest Model object in ascending order and returns the ascending List.
+	 */
 	public static List<GeoLocationAppRequest> sortShopList(List<GeoLocationAppRequest> geoLocationAppRequestList) 
 			throws GeoLocationAppException {
 		

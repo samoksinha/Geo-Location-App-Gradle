@@ -4,6 +4,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * @author Samok Sinha
+ * 
+ * This class is the Model Request class which provides the necessary Shop details information.
+ * This class information is moving back an forward to the End Client.
+ * It also wraps Entity class informations and converts it to this Model class information.
+ * It also provides GeoCoding API related messages and codes to the end client.
+ *
+ */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"shopId",
 					"shopName",
@@ -12,22 +24,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 					"shopLatitude",
 					"shopLongitude",
 					"distance",
-					"errorCode",
-					"errorMessage"
+					"geoApiErrorCode",
+					"geoApiErrorMessage"
 				  })
 public class GeoLocationAppRequest {
 
+	@ApiModelProperty(hidden=true)
 	private Long shopId;
+	@ApiModelProperty(required=true, position=1, dataType="java.lang.String", example="Shop1")
 	private String shopName;
+	@ApiModelProperty(required=true, position=2, dataType="java.lang.String", example="802, Purbachal Main Road")
 	private String shopAddress;
+	@ApiModelProperty(required=true, position=3, dataType="java.lang.String", example="700078")
 	private long shopPincode;
+	
+	@ApiModelProperty(hidden=true)
 	private String shopLatitude;
+	@ApiModelProperty(hidden=true)
 	private String shopLongitude;
+	@ApiModelProperty(hidden=true)
 	private String distance;
+	
+	@ApiModelProperty(hidden=true)
 	private String errorCode;
+	@ApiModelProperty(hidden=true)
 	private String errorMessage;
 	
 	public GeoLocationAppRequest() {
+	}
+	
+	public GeoLocationAppRequest(String shopLatitude, String shopLongitude) {
+		this.shopLatitude = shopLatitude;
+		this.shopLongitude = shopLongitude;
 	}
 	
 	public GeoLocationAppRequest(Long shopId, String shopName, String shopAddress, 
@@ -101,7 +129,7 @@ public class GeoLocationAppRequest {
 	public String getErrorCode() {
 		return errorCode;
 	}
-	@JsonProperty("errorCode")
+	@JsonProperty("geoApiErrorCode")
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
@@ -109,7 +137,7 @@ public class GeoLocationAppRequest {
 	public String getErrorMessage() {
 		return errorMessage;
 	}
-	@JsonProperty("errorMessage")
+	@JsonProperty("geoApiErrorMessage")
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}

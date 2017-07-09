@@ -20,6 +20,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.sam.geolocationapp.utility.GeoLocationAppConstants;
 
+/**
+ * @author Samok Sinha
+ *
+ * This class provides configuration related to in memory(H2) persistence and integration
+ * with Hibernate framework.
+ */
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
@@ -46,6 +53,12 @@ public class GeoLocationAppPersistenceConfig {
 	@Value("${com.sam.geolocation.hibernate.enitityPackage}")
 	protected String hibernateEntityPackage;
 
+	/**
+	 * @param entityManagerFactory
+	 * @return
+	 * 
+	 * This methods configures the Transaction Manager for the Persistence Unit and returned it.
+	 */
 	@Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -53,6 +66,12 @@ public class GeoLocationAppPersistenceConfig {
         
         return transactionManager;
     }
+	
+	/**
+	 * @return
+	 * 
+	 * This methods configures the entity Manager Factory Bean for the Persistence Unit and returned it.
+	 */
 	
 	@Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -67,12 +86,21 @@ public class GeoLocationAppPersistenceConfig {
        return emf;
     }
 	
+	/**
+	 * @return
+	 * 
+	 * This methods configures the Data Source Bean for the Persistence Unit and returned it.
+	 */
 	@Bean
     public DataSource hsqlDataSource() {
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
         									.build();
     }
 	
+	/**
+	 * @return
+	 * This methods configures Hibernate related properties and returned it.
+	 */
 	protected Properties buildHibernateProperties() {
         Properties hibernateProperties = new Properties();
 

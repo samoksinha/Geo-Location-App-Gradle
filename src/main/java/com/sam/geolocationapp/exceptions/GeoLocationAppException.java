@@ -3,6 +3,16 @@ package com.sam.geolocationapp.exceptions;
 import com.sam.geolocationapp.utility.GeoLocationAppConstants;
 import com.sam.geolocationapp.utility.GeoLocationAppUtility;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This Class provides the Custom Exception Handing capability of the application.
+ * It is child class of RuntimeException class and wraps all other Exceptions into 
+ * this Single Customized Exception.
+ * It consists errorCode, exceptionType and geoLocationAppFaultInfo.
+ * 
+ */
+
 public class GeoLocationAppException extends RuntimeException {
 
 	private static final long serialVersionUID = 12345L;

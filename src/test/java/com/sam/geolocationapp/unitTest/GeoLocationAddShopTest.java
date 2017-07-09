@@ -60,7 +60,7 @@ public class GeoLocationAddShopTest {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 		    headers.add("emailId", "samok.sinha@gmail.com");
 		    
-		    httpGetEntity = new HttpEntity<String>("parameters", headers);
+		    httpGetEntity = new HttpEntity<String>(null, headers);
 		    
 		    responseEntity = restTemplateClient.exchange(getApiKeyUrl, HttpMethod.GET, 
 		    									httpGetEntity, GeoLocationAppResponse.class);
@@ -91,9 +91,22 @@ public class GeoLocationAddShopTest {
 		    LOGGER.info("In GeoLocationControllerTest:addShop : Status : " +responseEntity.getStatusCode());
 		    
 		    geoLocationAppRequest = new GeoLocationAppRequest();
-		    geoLocationAppRequest.setShopName("Test_Name_1");
+		    geoLocationAppRequest.setShopName("Test_Name_2");
 		    geoLocationAppRequest.setShopAddress("Test_Address_1");
 		    geoLocationAppRequest.setShopPincode(700048);
+		    httpPostEntity = new HttpEntity<GeoLocationAppRequest>(geoLocationAppRequest, headers);
+		   
+		    responseEntity = restTemplateClient.exchange(addShopUrl, HttpMethod.POST, 
+		    											 httpPostEntity, GeoLocationAppResponse.class);
+		    geoLocationAppResponse = responseEntity.getBody();
+		    geoLocationAppResponseString = objectMapper.writeValueAsString(geoLocationAppResponse);
+		    LOGGER.info("In GeoLocationControllerTest:addShop : geoLocationAppResponseString : " +geoLocationAppResponseString);
+		    LOGGER.info("In GeoLocationControllerTest:addShop : Status : " +responseEntity.getStatusCode());
+		    
+		    geoLocationAppRequest = new GeoLocationAppRequest();
+		    geoLocationAppRequest.setShopName("Test_Name_1");
+		    geoLocationAppRequest.setShopAddress("Test_Address_1");
+		    geoLocationAppRequest.setShopPincode(700078);
 		    httpPostEntity = new HttpEntity<GeoLocationAppRequest>(geoLocationAppRequest, headers);
 		   
 		    responseEntity = restTemplateClient.exchange(addShopUrl, HttpMethod.POST, 

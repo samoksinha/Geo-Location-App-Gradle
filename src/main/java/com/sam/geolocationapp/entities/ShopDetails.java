@@ -9,6 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This class is the Entity class which maps ShopDetails into the underlying
+ * database table of shop_details.
+ *
+ */
+
 @Entity
 @Table(name="shop_details")
 public class ShopDetails implements Serializable {

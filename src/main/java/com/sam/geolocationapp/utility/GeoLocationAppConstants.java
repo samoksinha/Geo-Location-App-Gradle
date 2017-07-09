@@ -3,6 +3,13 @@ package com.sam.geolocationapp.utility;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This Interface provides all the Constants used through out the Application.
+ * 
+ */
+
 public abstract class GeoLocationAppConstants {
 	
 	public static final int GENERIC_ERROR_CODE = 101;
@@ -20,10 +27,14 @@ public abstract class GeoLocationAppConstants {
 	public static final String STATUS_SUCCESS_VALUE = "Success";
 	public static final String STATUS_FALIURE_VALUE = "Failure";
 	
+	public static final String ADD_SHOP_CURRENT_VERSION_KEY = "currentVesrion";
+	public static final String ADD_SHOP_PREVIOUS_VERSION_KEY = "previousVersion";
+	
 	public static final String EMPTY_DELIMITER_VALUE = "";
 	public static final String WHITE_SPACE_DELIMITER_VALUE = " ";
 	public static final String QUESTION_MARK_DELIMITER_VALUE = "?";
 	public static final String EQUALS_DELIMITER_VALUE = "=";
+	public static final String PIPE_DELIMITER_VALUE = "\\|";
 	
 	public static final String X_REAL_IP_KEY = "x-real-ip";
     public static final String X_FORWARDED_FOR_KEY = "x-forwarded-for";
@@ -42,14 +53,10 @@ public abstract class GeoLocationAppConstants {
     
     public static final int NO_OF_THREAD_ACCESS_CONCURRENTLY = 1;
     
-    public static final String GEO_LOCATION_API_CONTENT_TYPE_KEY = "Content-Type";
-    public static final String GEO_LOCATION_API_CONTENT_TYPE_VALUE = "application/json";
-    public static final String GEO_LOCATION_API_ACCEPT_KEY = "Accept";
-    public static final String GEO_LOCATION_API_ACCEPT_VALUE = "application/json";
-    
     public static final int GEO_LOCATION_API_SUCCESS_CODE_VALUE = 200;
     public static final int EMPLTY_PIN_CODE_VALUE = 0;
     
     public static final String GEO_LOCATION_API_SUCCESS_VALUE = "OK";
     public static final String GEO_LOCATION_API_EMPTY_RESULT_VALUE = "ZERO_RESULTS";
+    
 }

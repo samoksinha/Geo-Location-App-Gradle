@@ -4,6 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/**
+ * @author Samok Sinha
+ * 
+ * This Class is model class for all the application error informations. Based on this
+ * class information error details will be presented to the end client.
+ * It consists errorCode and errorMessage.
+ * 
+ */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"errorCode", 
 					"errorMessage"

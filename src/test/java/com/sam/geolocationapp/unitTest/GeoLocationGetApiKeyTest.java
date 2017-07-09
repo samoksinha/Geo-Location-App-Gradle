@@ -50,12 +50,12 @@ public class GeoLocationGetApiKeyTest {
 			headers.setContentType(MediaType.APPLICATION_JSON);
 		    headers.add("emailId", "samok.sinha@gmail.com");
 		    
-		    httpEntity = new HttpEntity<String>("parameters", headers);
+		    httpEntity = new HttpEntity<String>(null, headers);
 		    
 		    responseEntity = restTemplateClient.exchange(getApiKeyUrl, HttpMethod.GET, 
 														 httpEntity, GeoLocationAppResponse.class);
 		    geoLocationAppResponse = responseEntity.getBody();
-		    
+
 		    geoLocationAppResponseString = objectMapper.writeValueAsString(geoLocationAppResponse);
 		    LOGGER.info("In GeoLocationControllerTest:getApiKey : geoLocationAppResponseString : " +geoLocationAppResponseString);
 		    LOGGER.info("In GeoLocationControllerTest:getApiKey : Status : " +responseEntity.getStatusCode());
